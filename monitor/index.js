@@ -53,6 +53,10 @@ const inspectOut = () => {
     for (let dirName of fs.readdirSync(appDir)) {
         let projectPath = path.join(appDir, dirName);
 
+        // 扫描source文件夹
+        let sourcePath = path.join(projectPath, 'source');
+        fs.existsSync(sourcePath) && (projectPath = sourcePath);
+
         // 判断是不是文件夹
         if (fs.statSync(projectPath).isDirectory()) {
             // 加载app下的配置文件
